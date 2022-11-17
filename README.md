@@ -1,5 +1,7 @@
 # ecomm
 
+Level Up + PagoNxt
+
 ## Desafio semana 1
 ### Essencial
 - [x] Crie um novo repositório no GitHub chamado ecomm.
@@ -8,3 +10,4 @@
 - [x] Crie um arquivo chamado main.js dentro da pasta product/src que simplesmente faz log da mensagem: iniciando product.
 - [x] Execute esse arquivo com o Node e valide que a mensagem está sendo impressa no terminal.
 - [x] Faça commit das suas mudanças.
+
