@@ -4,6 +4,6 @@
  - [x] Crie um arquivo chamado main.js dentro da pasta product/src que simplesmente faz log da mensagem: iniciando product.
  - [x] Execute esse arquivo com o Node e valide que a mensagem está sendo impressa no terminal.
  <br>
- ![texto](./img/entrega_essencial.PNG)
+ <img src="img/entrega_essencial.png">
  <br>
  - [x]Faça commit das suas mudanças.
