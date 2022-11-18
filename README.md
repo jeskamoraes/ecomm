@@ -29,9 +29,9 @@
 <img src="img/entrega_desafio.PNG">
 </div>
 
-- [x] Crie um arquivo docker-compose.yml na raiz do repositório.
-- [x] Faça com que ao executar o comando docker-compose up, o container da aplicação product seja criado se necessário e executado.
-- [x] Ao fazer docker-compose down este mesmo container deve ser destruído.
+- [x] Crie um arquivo `docker-compose.yml`na raiz do repositório.
+- [x] Faça com que ao executar o comando `docker-compose up`, o container da aplicação `product` seja criado se necessário e executado.
+- [x] Ao fazer `docker-compose down` este mesmo container deve ser destruído.
 
  
  
