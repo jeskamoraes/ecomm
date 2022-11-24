@@ -1,6 +1,6 @@
 FROM node:14
-WORKDIR /app
-COPY . .
-EXPOSE 3000
+WORKDIR /product
+COPY package.json package-lock.json /product/
 RUN npm install
+COPY . .
 CMD ["npm", "start"]
