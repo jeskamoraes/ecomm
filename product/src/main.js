@@ -1,3 +1,7 @@
+const message = "iniciando product";
+console.log(message);
+
+/*
 const express = require('express');
 
 const PORT = 3000;
@@ -10,5 +14,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, HOST);
-
+*/
 
