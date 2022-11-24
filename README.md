@@ -23,6 +23,16 @@
 - [x] Configure o comando base de inicialização do container dessa imagem para executar o arquivo `main.js` que está dentro de `src`.
 - [x] Faça o `build` dessa imagem, crie um container a partir dela e verifique se nos logs do container, a mensagem de `log` que criamos na tarefa anterior é exibido.
 
+### 🌳 Atividade desafio
+
+<div align="center">
+<img src="img/entrega_desafio.PNG">
+</div>
+
+- [x] Crie um arquivo `docker-compose.yml`na raiz do repositório.
+- [x] Faça com que ao executar o comando `docker-compose up`, o container da aplicação `product` seja criado se necessário e executado.
+- [x] Ao fazer `docker-compose down` este mesmo container deve ser destruído.
+
  
  
 
