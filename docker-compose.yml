@@ -1,0 +1,5 @@
+version: '3'
+services:
+  product:
+    image: jessicamoraes/app-ecomm:1.0
+    build: product
