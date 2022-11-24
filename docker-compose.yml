@@ -1,5 +1,7 @@
-version: '3'
+
+version: "3.9"
 services:
-  product:
-    image: jessicamoraes/app-ecomm:1.0
-    build: product
+  account:
+    image: jessicamoraes/app-account
+    build: account
+
