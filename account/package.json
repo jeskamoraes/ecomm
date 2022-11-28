@@ -9,5 +9,8 @@
     "start": "node test/createUserAccount.test.js"
   },
   "author": "Jessica Moraes",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^4.12.1"
+  }
 }
