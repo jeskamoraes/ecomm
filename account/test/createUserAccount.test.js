@@ -1,9 +1,6 @@
-import { createUserUseCase } from '../src/use-case/createUserAccount.js';
+import { createAccountUseCase } from '../src/use-case/createAccountUseCase.js';
+//const createUserUseCase = require('../src/use-case/createUserAccount');
 
-let users = [
-    createUserUseCase("Luara de Souza", "lua@hotmail.com", "545545Lu"),
-    createUserUseCase("Camila dos Santos", "camila@gmail.com", "camis@456"),
-    createUserUseCase("Luan da Silva", "luan__22@gmail.com", "feilor")
-];
+const user = createAccountUseCase('Jessica', 'jessica@gmail.com', '1234jess');
 
-console.log(users);
+console.log(user);
