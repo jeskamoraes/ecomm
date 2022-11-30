@@ -1,5 +1,5 @@
 
-version: "3.9"
+version: "3"
 services:
   product:
     image: jessicamoraes/app-product
@@ -8,4 +8,17 @@ services:
   account:
     image: jessicamoraes/app-account
     build: account
+    volumes: 
+    - ./account:/app
+
+  account_db:
+    image: mongo
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=jessica
+      - MONGO_INITDB_ROOT_PASSWORD=123456789
+    ports: 
+      - 27017:27017
+
+
 
