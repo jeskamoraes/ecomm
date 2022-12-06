@@ -6,8 +6,11 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node test/createUserAccount.test.js"
+    "start": "nodemon test/createUserAccount.test.js"
   },
   "author": "Jessica Moraes",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^4.12.1"
+  }
 }
