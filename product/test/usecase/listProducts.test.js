@@ -1,10 +1,6 @@
 const { createProduct } = require("../../src/usecase/createProductUseCase")
-const { findProducts } = require("../../src/usecase/listProductsUseCase")
+const { listProducts } = require("../../src/usecase/listProductsUseCase")
 const { randomUUID } = require('crypto');
-
-const listProducts = () => {
-    return findProducts()
- }
 
 console.log("Lista vazia: ", listProducts())
 
