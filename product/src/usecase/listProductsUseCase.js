@@ -1,6 +1,8 @@
 const { findProducts } = require("../repositories/productRepository")
 
 // Utilizando a findProducts para retornar uma lista com todos os produtos salvos
-findProducts()
+const listProducts = () => {
+    return findProducts()
+}
 
-module.exports = { findProducts }
+module.exports = { listProducts }
