@@ -6,11 +6,13 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon test/createUserAccount.test.js"
+    "start": "nodemon src/main.js"
   },
   "author": "Jessica Moraes",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^4.12.1"
+    "bcryptjs": "^2.4.3",
+    "mongodb": "^4.12.1",
+    "mongoose": "^6.2.6"
   }
 }
