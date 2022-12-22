@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "API Account",
-        "description": "Essa API tem o objetivo de cadastrar um usuário",
+        "description": "Application with the purpose of registering a user.",
         "contact": {
             "email": "jessicamoraes.dev@gmail.com"
         },
@@ -11,8 +11,8 @@
     "paths": {
         "/products": {
             "post": {
-                "summary": "Cadastro de usuário",
-                "description": "Rota responsável por cadastrar um novo usuário",
+                "summary": "User registration",
+                "description": "Route responsible for registering a new user.",
                 "tags": [
                     "Accounts"
                 ],
@@ -27,10 +27,13 @@
                 },
                 "responses": {
                     "500": {
-                        "description": "Erro no servidor"
+                        "description": "Internal Server Error"
+                    },
+                    "400": {
+                        "description": "Bad Request"
                     },
                     "201": {
-                        "description": "Criado com sucesso",
+                        "description": "Created",
                         "content": {
                             "application/json": {
                                 "schema": {
