@@ -1,0 +1,65 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Account",
+        "description": "Essa API tem o objetivo de cadastrar um usuário",
+        "contact": {
+            "email": "jessicamoraes.dev@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/products": {
+            "post": {
+                "summary": "Cadastro de usuário",
+                "description": "Rota responsável por cadastrar um novo usuário",
+                "tags": [
+                    "Accounts"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Account"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "Erro no servidor"
+                    },
+                    "201": {
+                        "description": "Criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Account"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Account": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,102 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Product",
+        "description": "Essa aplicação tem o objetivo de cadastrar e listar produtos",
+        "contact": {
+            "email": "jessicamoraes.dev@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/products": {
+            "post": {
+                "summary": "Cadastro de produto",
+                "description": "Rota responsável por cadastrar um novo produto",
+                "tags": ["Products"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Product"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "Erro no servidor"
+                    },
+                    "201": {
+                        "description": "Criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary":"Listagem de todos os produtos",
+                "description": "Lista todos os produtos cadastrados",
+                "tags": ["Products"],
+                "responses": {
+                    "500": {
+                        "description": "Erro no servidor"
+                    },
+                    "200": {
+                        "description": "Ok"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Product": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "number"
+                    },
+                    "quantity": {
+                        "type": "number"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "features": [
+                        {
+                            "name": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            }
+                        }
+                    ],
+                    "images": [
+                            {
+                                "url": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                }
+                            }
+                    ]
+                }
+            }
+        }
+    }
+}
