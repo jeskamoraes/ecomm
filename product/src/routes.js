@@ -22,7 +22,7 @@ router.post('/products', function (req, res) {
             res.status(201).json(data);
         })
         .catch((error) => {
-            res.status(400).json({ status: 'Error fetching products!', message: error.message });
+            res.status(500).json({ message: error.message });
         })
 });
 
