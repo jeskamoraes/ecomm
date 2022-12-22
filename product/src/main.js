@@ -1,18 +1,18 @@
-const message = "iniciando product";
-console.log(message);
-
-/*
 const express = require('express');
+const { router } = require('./routes');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocs = require('./swagger.json')
 
-const PORT = 3000;
-const HOST = '0.0.0.0';
-
+const port = 3000;
 const app = express();
 
-app.get('/', (req, res) => {
-    console.log('iniciando product')
+app.use(express.json());
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use(router);
+
+app.listen(port, () => {
+  console.log(`Products server is running in port ${port}`)
 });
 
-app.listen(PORT, HOST);
-*/
+
 
