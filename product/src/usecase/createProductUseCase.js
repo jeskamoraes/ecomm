@@ -1,11 +1,13 @@
 const { saveProduct } = require("../repositories/productRepository");
 const { randomUUID } = require('crypto');
 
-const createProduct = product => {
-    product.productId = randomUUID();
-    product.createdDate = new Date().toISOString().substring(0, 10);
+const createProduct = async product => {
+    id = randomUUID();
+    createdDate = new Date().toISOString().substring(0, 10);
+    const createProduct = { id, createdDate, ...product }
 
-    return saveProduct(product);
+    await saveProduct(product);
+    return createProduct; 
 }
 
 module.exports = { createProduct }
