@@ -9,6 +9,9 @@ const saveProduct = product => {
 }
 
 // Função que não recebe nenhum parâmetro, mas retorna todos os produtos salvos
-const findProducts = () => products
+const findProducts = () => {
+    const listProducts = products
+    return listProducts;
+}
 
 module.exports = { saveProduct, findProducts };
