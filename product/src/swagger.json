@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "API Product",
-        "description": "Essa aplicação tem o objetivo de cadastrar e listar produtos",
+        "description": "Application in order to register and list products.",
         "contact": {
             "email": "jessicamoraes.dev@gmail.com"
         },
@@ -11,8 +11,8 @@
     "paths": {
         "/products": {
             "post": {
-                "summary": "Cadastro de produto",
-                "description": "Rota responsável por cadastrar um novo produto",
+                "summary": "Product registration",
+                "description": "Route responsible for registering a new product.",
                 "tags": ["Products"],
                 "requestBody": {
                     "content": {
@@ -25,10 +25,10 @@
                 },
                 "responses": {
                     "500": {
-                        "description": "Erro no servidor"
+                        "description": "Internal Server Error"
                     },
                     "201": {
-                        "description": "Criado com sucesso",
+                        "description": "Created",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -41,15 +41,18 @@
                 }
             },
             "get": {
-                "summary":"Listagem de todos os produtos",
-                "description": "Lista todos os produtos cadastrados",
+                "summary":"List of all products",
+                "description": "Route responsible for listing all products found in the database.",
                 "tags": ["Products"],
                 "responses": {
                     "500": {
-                        "description": "Erro no servidor"
+                        "description": "Internal Server Error"
+                    },
+                    "404": {
+                        "description": "Not found"
                     },
                     "200": {
-                        "description": "Ok"
+                        "description": "OK"
                     }
                 }
             }
