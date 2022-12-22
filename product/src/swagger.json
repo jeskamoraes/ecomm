@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "API Product",
-        "description": "Application in order to register and list products.",
+        "title": "API Ecomm - Product",
+        "description": "This application will integrate the Ecomm API. Under development...",
         "contact": {
             "email": "jessicamoraes.dev@gmail.com"
         },

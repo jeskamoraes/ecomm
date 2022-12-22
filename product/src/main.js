@@ -7,7 +7,7 @@ const port = 3000;
 const app = express();
 
 app.use(express.json());
-// Sprint 6
+// Realizado durante a sprint 6
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(router);
 

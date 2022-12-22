@@ -10,6 +10,7 @@ import swaggerDocs from './swagger.json' assert {type: "json"};
 const app = express();
 
 app.use(express.json()); // pega o json q vem da requisição e preenche o body com ele, senão o request.body não funciona
+// Realizado durante a sprint 6
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(router);
 
