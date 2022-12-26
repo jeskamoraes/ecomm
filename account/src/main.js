@@ -1,7 +1,7 @@
 import express from 'express';
 import { router } from './routes.js';
 import swaggerUi from 'swagger-ui-express';
-import swaggerDocs from './swagger.json' assert {type: "json"}; 
+import swaggerDocs from './swagger.json' assert {type: "json"};
 
 // Importante manter a ordem seguida aqui
 
@@ -17,7 +17,7 @@ app.use(router);
 app.get('/docs', swaggerUi.setup(swaggerDocs));
 
 app.listen(3000, function () {
-    console.log("Accounts server is running");
+    console.log("Accounts server is running in port 3000");
 })
 
 
