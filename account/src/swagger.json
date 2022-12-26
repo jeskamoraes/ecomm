@@ -9,7 +9,7 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/products": {
+        "/accounts": {
             "post": {
                 "summary": "User registration",
                 "description": "Route responsible for registering a new user.",
