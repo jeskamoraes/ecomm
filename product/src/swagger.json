@@ -37,6 +37,33 @@
                                 "schema": {
                                     "type": "object",
                                     "$ref": "#/components/schemas/Product"
+                                },
+                                "examples": {
+                                    "products": {
+                                        "value": {
+                                            "id": "6d607f6a-3625-45df-884a-d2a479680393",
+                                            "createdDate": "2022-12-26",
+                                            "produto": {
+                                                "nome": "Tênis adidas",
+                                                "valor": 500,
+                                                "quantidade": 10,
+                                                "descricao": "Tênis adidas branco",
+                                                "categoria": "Calçado",
+                                                "caracteristicas": [
+                                                    {
+                                                        "nome": "Tênis",
+                                                        "descricao": "Descrição"
+                                                    }
+                                                ],
+                                                "imagens": [
+                                                    {
+                                                        "url": "imagem",
+                                                        "descricao": "Descrição"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
