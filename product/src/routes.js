@@ -10,7 +10,7 @@ router.get('/products', (req, res) => {
             res.status(201).json(products)
         })
         .catch(error => {
-            res.status(400).json({ status: 'error', message: error.message });
+            res.status(500).json({ status: 'error', message: error.message });
         });
 });
 
@@ -22,7 +22,7 @@ router.post('/products', function (req, res) {
             res.status(201).json(data);
         })
         .catch((error) => {
-            res.status(500).json({ message: error.message });
+            res.status(400).json({ message: error.message });
         })
 });
 
