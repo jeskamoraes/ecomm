@@ -1,18 +1,18 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "API Account",
-        "description": "Essa API tem o objetivo de cadastrar um usuário",
+        "title": "API Ecomm - Account",
+        "description": "This application will integrate the Ecomm API. Under development...",
         "contact": {
             "email": "jessicamoraes.dev@gmail.com"
         },
         "version": "1.0.0"
     },
     "paths": {
-        "/products": {
+        "/accounts": {
             "post": {
-                "summary": "Cadastro de usuário",
-                "description": "Rota responsável por cadastrar um novo usuário",
+                "summary": "User registration",
+                "description": "Route responsible for registering a new user.",
                 "tags": [
                     "Accounts"
                 ],
@@ -27,15 +27,29 @@
                 },
                 "responses": {
                     "500": {
-                        "description": "Erro no servidor"
+                        "description": "Internal Server Error"
+                    },
+                    "400": {
+                        "description": "Bad Request"
                     },
                     "201": {
-                        "description": "Criado com sucesso",
+                        "description": "Created",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "$ref": "#/components/schemas/Account"
+                                },
+                                "examples": {
+                                    "accounts": {
+                                        "value": {
+                                            "id": "6d607f6a-3625-45df-884a-d2a479680393",
+                                            "nome": "Maria Garcia",
+                                            "email": "mariagarcia@email.com",
+                                            "password": "xxxxxxxx",
+                                            "createdDate": "2022-12-26"
+                                        }
+                                    }
                                 }
                             }
                         }

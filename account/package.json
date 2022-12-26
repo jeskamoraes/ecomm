@@ -13,7 +13,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
-    "mongodb": "^4.12.1",
+    "mongodb": "^4.13.0",
     "mongoose": "^6.2.6",
     "swagger-ui-express": "^4.6.0"
   }
