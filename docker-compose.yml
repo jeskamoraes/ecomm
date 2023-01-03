@@ -20,5 +20,15 @@ services:
     ports: 
       - 27017:27017
 
+  product_db:
+    image: mysql
+    container_name: mysqldb
+    environment:
+      MYSQL_DATABASE: products
+      MYSQL_USERNAME: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: root
+    ports: 
+      - 3307:3306
+
 
 
