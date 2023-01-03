@@ -1,14 +1,16 @@
 const { MongoClient } = require('mongodb');
 // const products = [];
 
-async function getUsersCollection() {
-    const connectionURL = 'mongodb://jessica:123456789@localhost:27017';
-    const connection = new MongoClient(connectionURL);
-    await connection.connect();
+// async function getUsersCollection() {
+//     const connectionURL = 'mongodb://jessica:123456789@localhost:27017';
+//     const connection = new MongoClient(connectionURL);
+//     await connection.connect();
   
-    const database = connection.db('ecomm');
-    return database.collection('products');
-  }
+//     const database = connection.db('ecomm');
+//     return database.collection('products');
+//   }
+
+
 
 // Função responsável por adicionar os produtos dentro do array
 const saveProduct = async product => {
