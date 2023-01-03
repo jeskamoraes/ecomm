@@ -1,12 +1,15 @@
 const express = require('express');
 const { router } = require('./routes');
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocs = require('./swagger.json')
+const swaggerDocs = require('./swagger.json');
+const bodyParser = require('body-parser');
 
 const port = 3000;
 const app = express();
 
-app.use(express.json());
+// Recebe os dados recebidos via post e converte para json
+// app.use(express.json());
+app.use(bodyParser.json());
 // Realizado durante a sprint 6
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(router);
