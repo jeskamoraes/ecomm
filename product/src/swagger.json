@@ -13,7 +13,9 @@
             "post": {
                 "summary": "Product registration",
                 "description": "Route responsible for registering a new product.",
-                "tags": ["Products"],
+                "tags": [
+                    "Products"
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -71,9 +73,11 @@
                 }
             },
             "get": {
-                "summary":"List of all products",
+                "summary": "List of all products",
                 "description": "Route responsible for listing all products found in the database.",
-                "tags": ["Products"],
+                "tags": [
+                    "Products"
+                ],
                 "responses": {
                     "500": {
                         "description": "Internal Server Error"
@@ -119,14 +123,14 @@
                         }
                     ],
                     "images": [
-                            {
-                                "url": {
-                                    "type": "string"
-                                },
-                                "description": {
-                                    "type": "string"
-                                }
+                        {
+                            "url": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
                             }
+                        }
                     ]
                 }
             }
