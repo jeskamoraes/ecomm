@@ -3,6 +3,7 @@ const { router } = require('./routes');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocs = require('./swagger.json');
 const bodyParser = require('body-parser');
+const { testConnection } = require('./repositories/productRepository');
 
 const port = 3000;
 const app = express();
@@ -13,6 +14,8 @@ app.use(bodyParser.json());
 // Realizado durante a sprint 6
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(router);
+
+testConnection();
 
 app.listen(port, () => {
   console.log(`Products server is running in port ${port}`)
