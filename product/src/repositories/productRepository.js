@@ -1,4 +1,31 @@
-const { MongoClient } = require('mongodb');
+const Sequelize = require('sequelize');
+// Conexão com o bando de dados
+const sequelize = new Sequelize('mysql://root@localhost:3306/db_products');
+const products = require('../models/products')(sequelize, Sequelize.DataTypes);
+
+const testConnection = async () => {
+    try {
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully.');
+      } catch (error) {
+        console.error('Unable to connect to the database:', error);
+      }
+}
+
+const saveProduct = async product => {
+    const createProduct = await products.create(product);
+    return createProduct;
+}
+
+const findProducts = async () => {
+    const allProducts = await products.findAll();
+    return allProducts;
+}
+
+module.exports = { testConnection, saveProduct, findProducts };
+
+// Código utilizado quando desenvolvemos apenas com array e depois realizando a conexão com o mongo
+
 // const products = [];
 
 // async function getUsersCollection() {
@@ -10,17 +37,15 @@ const { MongoClient } = require('mongodb');
 //     return database.collection('products');
 //   }
 
-
-
 // Função responsável por adicionar os produtos dentro do array
-const saveProduct = async product => {
-    const collection = await getUsersCollection();
-    // products.push(product)
-    // Para retornar a lista não é necessário dar return product aqui!
-    // Sem o return product não é retornado um produto único (primeiro teste realizado)
-    //return product
-    await collection.insertOne(product)
-}
+// const saveProduct = async product => {
+//     const collection = await getUsersCollection();
+//     // products.push(product)
+//     // Para retornar a lista não é necessário dar return product aqui!
+//     // Sem o return product não é retornado um produto único (primeiro teste realizado)
+//     //return product
+//     await collection.insertOne(product)
+// }
 
 // Função que não recebe nenhum parâmetro, mas retorna todos os produtos salvos
 // const findProducts = () => {
@@ -28,10 +53,8 @@ const saveProduct = async product => {
 //     return listProducts;
 // }
 
-const findProducts = async () => {
-    const collection = await getUsersCollection();
-    const products = collection.find().toArray();
-    return products;
-}
-
-module.exports = { saveProduct, findProducts };
+// const findProducts = async () => {
+//     const collection = await getUsersCollection();
+//     const products = collection.find().toArray();
+//     return products;
+// }
