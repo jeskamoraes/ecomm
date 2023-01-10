@@ -4,6 +4,8 @@ services:
   product:
     image: jessicamoraes/app-product
     build: product
+    ports: 
+      - 3001:3000
   
   account:
     image: jessicamoraes/app-account
@@ -24,9 +26,8 @@ services:
     image: mysql
     container_name: mysqldb
     environment:
-      MYSQL_DATABASE: products
-      MYSQL_USERNAME: root
-      MYSQL_ALLOW_EMPTY_PASSWORD: root
+      - MYSQL_DATABASE=products
+      - MYSQL_ROOT_PASSWORD=root
     ports: 
       - 3307:3306
 
