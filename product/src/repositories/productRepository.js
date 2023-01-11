@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 // Conexão com o bando de dados
-const sequelize = new Sequelize('mysql://root@localhost:3306/db_products');
+const sequelize = new Sequelize('mysql://root@localhost:3306/db_product');
 const products = require('../models/products')(sequelize, Sequelize.DataTypes);
 
 const testConnection = async () => {
@@ -12,17 +12,17 @@ const testConnection = async () => {
       }
 }
 
-const saveProduct = async product => {
-    const createProduct = await products.create(product);
-    return createProduct;
-}
+// const saveProduct = async product => {
+//     const createProduct = await products.create(product);
+//     return createProduct;
+// }
 
-const findProducts = async () => {
-    const allProducts = await products.findAll();
-    return allProducts;
-}
+// const findProducts = async () => {
+//     const allProducts = await products.findAll();
+//     return allProducts;
+// }
 
-module.exports = { testConnection, saveProduct, findProducts };
+module.exports = { testConnection };
 
 // Código utilizado quando desenvolvemos apenas com array e depois realizando a conexão com o mongo
 
