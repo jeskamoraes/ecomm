@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const { testConnection } = require('./repositories/productRepository');
 const routes = require('./routes/index')
 
-const port = 3001;
+const port = 3000;
 const app = express();
 
 // Recebe os dados recebidos via post e converte para json
