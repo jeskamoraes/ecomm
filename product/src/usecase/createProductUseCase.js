@@ -1,7 +1,7 @@
-const { saveProduct } = require("../repositories/productRepository");
-const { randomUUID } = require('crypto');
+import { saveProduct } from"../repositories/productRepository.js";
+import { randomUUID } from 'crypto';
 
-const createProduct = async product => {
+export const createProduct = async product => {
     const id = randomUUID();
     const createdDate = new Date().toISOString().substring(0, 10);
     //const createProduct = { id, createdDate, ...product }
@@ -16,5 +16,3 @@ const createProduct = async product => {
     
 }
 
-
-module.exports = { createProduct }
