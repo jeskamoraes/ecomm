@@ -1,7 +1,7 @@
-FROM node:14
-WORKDIR /account
-COPY package.json package-lock.json /account/
+FROM node
+WORKDIR /app
+COPY package.json package-lock.json /app/
+EXPOSE 3000
 RUN npm install
 COPY . .
-EXPOSE 3000
-CMD ["npm", "start"]
+ENTRYPOINT ["npm", "start"]
