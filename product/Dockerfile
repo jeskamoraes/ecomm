@@ -1,7 +1,7 @@
-FROM node:18
-WORKDIR /product
-COPY package*.json /product/
+FROM node
+WORKDIR /app
+COPY package.json package-lock.json /app/
+EXPOSE 3001
 RUN npm install
 COPY . .
-EXPOSE 3000
-ENTRYPOINT npm start
+ENTRYPOINT ["npm", "start"]

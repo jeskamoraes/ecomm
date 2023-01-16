@@ -1,6 +1,6 @@
-const { Router } = require('express');
-const { createProduct } = require('./usecase/createProductUseCase');
-const { listProducts } = require('./usecase/listProductsUseCase');
+import { Router } from 'express';
+import { createProduct } from './usecase/createProductUseCase.js';
+import { listProducts } from'./usecase/listProductsUseCase.js';
 
 const router = Router();
 
@@ -26,4 +26,4 @@ router.post('/products', function (req, res) {
         })
 });
 
-module.exports = { router }
+export { router }

@@ -1,35 +1,41 @@
-
 version: "3"
 services:
   product:
+    depends_on:
+      - mysqldb
     image: jessicamoraes/app-product
     build: product
-    ports: 
-      - 3001:3000
-  
+    volumes:
+    - ./product:/app
+    ports:
+    - 3001:3001
+
+  mysqldb:
+    image: mysql
+    container_name: mysqldb
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_DATABASE=products
+      - MYSQL_USER=jessica
+      - MYSQL_PASSWORD=123456789
+    ports:
+    - 3306:3306
+
   account:
+    depends_on:
+      - mongodb
     image: jessicamoraes/app-account
     build: account
-    volumes: 
+    volumes:
     - ./account:/app
+    ports:
+    - 3000:3000
 
-  account_db:
+  mongodb:
     image: mongo
     container_name: mongodb
     environment:
       - MONGO_INITDB_ROOT_USERNAME=jessica
       - MONGO_INITDB_ROOT_PASSWORD=123456789
-    ports: 
+    ports:
       - 27017:27017
-
-  product_db:
-    image: mysql
-    container_name: mysqldb
-    environment:
-      - MYSQL_DATABASE=products
-      - MYSQL_ROOT_PASSWORD=root
-    ports: 
-      - 3307:3306
-
-
-

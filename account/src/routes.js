@@ -31,4 +31,4 @@ router.post('/accounts', function (req, res) {
                 });
         })
 });
-export { router };
+export default router;
