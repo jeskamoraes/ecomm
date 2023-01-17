@@ -26,6 +26,7 @@ services:
       - mongodb
     image: jessicamoraes/app-account
     build: account
+    entrypoint: 'npm run start:dev'
     volumes:
     - ./account:/app
     ports:
