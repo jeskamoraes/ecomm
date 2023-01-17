@@ -1,33 +1,27 @@
 //let users = [];
 
-import { saveAccount, findAccountByEmail } from '../repositories/accountRepository.js';
+import { saveAccount } from '../repositories/accountRepository.js';
 import { randomUUID } from 'crypto';
-import bcrypt from 'bcryptjs';
-
-function encode(password) {
-    const saltRounds = 10;
-    const hash = bcrypt.hashSync(password, saltRounds);
-    return hash;
-}
+import hashpassword from '../helpers/password.js';
 
 export async function createAccountUseCase (name, email, password){
     
-   const accountAlreadyExists = await findAccountByEmail(email);
+//    const accountAlreadyExists = await findAccountByEmail(email);
 
-   if(accountAlreadyExists) {
-    console.error('Account already exists', email);
-    return;
-   }
+//    if(accountAlreadyExists) {
+//     console.error('Account already exists', email);
+//     return;
+//    }
 
     const id = randomUUID();
     const createdDate = new Date().toISOString().substring(0, 10);
-    const encodedPassword = encode(password)
+    const encodedPassword = await hashpassword(password);
    
     const user = {
         id,
         name,
         email,
-        encodedPassword,
+        password: encodedPassword,
         createdDate
     }
 
