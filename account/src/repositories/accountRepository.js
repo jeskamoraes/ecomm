@@ -1,7 +1,8 @@
 
 import { MongoClient } from 'mongodb';
 
-export const client = new MongoClient('mongodb://jessica:123456789@localhost:27017');
+console.log(process.env.DATABASE_URL);
+export const client = new MongoClient(process.env.DATABASE_URL);
 
 export function getUsersCollection(client) {
   const db = client.db('accounts');
