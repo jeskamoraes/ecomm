@@ -1,40 +1,33 @@
 import app from '../../src/app.js';
 import request from 'supertest';
-import { response } from 'express';
-import { MongoClient } from 'mongodb';
-import getUsersCollection from '../../src/repositories/accountRepository.js'
+import { client, getUsersCollection } from '../../src/repositories/accountRepository.js';
 
-describe('insert', () => {
-    let connection;
-    let db;
-  
-    beforeAll(async () => {
-      connection = await MongoClient.connect(globalThis.getUsersCollection, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
+describe('Account Creation', () => {
+  afterEach(async () => {
+    await client.connect();
+    const usersCollection = await getUsersCollection(client);
+    await usersCollection.deleteMany({});
+    setTimeout(() => {client.close()}, 1500)
+  });
+
+  it('should create an user given correct user data', async () => {
+    await request(app)
+      .post('/accounts')
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+      .send({
+        name: 'Guilherme',
+        email: 'gui@pagonxt.com',
+        password: '123pago@00'
+      })
+      .expect(201)
+      .expect(({ body }) => {
+        expect(body).toEqual({
+          id: expect.any(String),
+          name: 'Guilherme',
+          email: 'gui@pagonxt.com',
+          date: new Date().toISOString().slice(0, 10)
+        })
       });
-      db = await connection.db(globalThis.accounts);
-    });
-  
-    afterAll(async () => {
-      await connection.close();
-    });
-
-afterEach(() => {
-    server.close()
+  });
 });
-
-describe('POST Account', () => {
-    it('Registra uma conta', async () => {
-        await request(app)
-            .post('/accounts')
-            .set('Accept', 'application/json')
-            .expect('content-type', 'application/json')
-            .send({
-                name: "Camila",
-                email: "camila@gmail.com",
-                password: "camis@123"
-            })
-            expect(response.ok).toBeTruthy();
-    })
-})
