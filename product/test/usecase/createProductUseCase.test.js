@@ -1,28 +1,37 @@
-const { createProduct} = require("../../src/usecase/createProductUseCase")
-const { randomUUID } = require('crypto');
+import request from 'supertest';
+import {app} from  '../../src/app.js';
+import { productExample } from '../usecase/data/products.js';
 
-const product = {
-    userId: randomUUID(),
-    name: "product",
-    value: 1000,
-    quantity: 1,
-    description: "description",
-    category: "category",
-    features: [{ name: "name", description: "description", }],
-    images: [{ url: "url", description: "description", }]
-}
+describe('Product Creation', () => {
 
- 
-const productCreated = createProduct(product)
-console.log(productCreated)
-
-// for(let i = 0; i < 10; i++) {
-//     const product = {
-//         name: `name ${i+1}`
-//     }
-//     createProduct(product)
-// }
-
-// const productList = listProducts()
-
-// console.log(productList)
+    it('should create a product given required product data', async () => {
+        await request(app)
+            .post('/products')
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send(productExample)
+            .expect(201)
+            .expect(({ body }) => {
+                expect(body).toEqual({
+                    ...productExample,
+                    id: expect.any(Number),
+                    createdAt: expect.any(String),
+                    updatedAt: expect.any(String),
+                    features: productExample.features.map(feature => ({
+                        ...feature, 
+                        id: expect.any(Number),
+                        product_id: body.id,
+                        createdAt: expect.any(String),
+                        updatedAt: expect.any(String),
+                    })),
+                    images: productExample.images.map(image => ({
+                        ...image, 
+                        id: expect.any(Number),
+                        product_id: body.id,
+                        createdAt: expect.any(String),
+                        updatedAt: expect.any(String),
+                    }))
+                });
+            });
+    });
+});
