@@ -5,8 +5,11 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "test": "jest",
-    "start": "nodemon src/main.js"
+    "start:dev": "env-cmd nodemon src/main.js",
+    "test": "env-cmd -f .env.test node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles",
+    "start": "nodemon src/main.js",
+    "migrate": "npx sequelize-cli db:migrate",
+    "migrate:undo": "npx sequelize-cli db:migrate:undo"
   },
   "repository": {
     "type": "git",
