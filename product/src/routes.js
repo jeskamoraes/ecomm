@@ -14,8 +14,7 @@ router.get('/products', (req, res) => {
         });
 });
 
-router.post('/products', function (req, res) {
-
+router.post('/products', (req, res) => {
     const product = req.body
     createProduct(product)
         .then((data) => {
@@ -26,4 +25,4 @@ router.post('/products', function (req, res) {
         })
 });
 
-export { router }
+export { router };
