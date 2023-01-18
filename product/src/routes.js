@@ -7,7 +7,7 @@ const router = Router();
 router.get('/products', (req, res) => {
     listProducts()
         .then(products => {
-            res.status(201).json(products)
+            res.status(200).json(products)
         })
         .catch(error => {
             res.status(500).json({ status: 'error', message: error.message });
