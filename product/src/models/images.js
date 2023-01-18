@@ -12,7 +12,8 @@ import client from "../repositories/databaseClient.js";
   }
   Images.init({
     url: DataTypes.STRING,
-    description: DataTypes.STRING
+    description: DataTypes.STRING,
+    product_id: DataTypes.INTEGER,
   }, {
     sequelize: client,
     modelName: 'Images',
