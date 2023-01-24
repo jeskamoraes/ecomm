@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "createUserAccount",
-  "type": "module",
   "scripts": {
     "start:dev": "env-cmd nodemon src/main.js",
     "test": "env-cmd -f .env.test node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles",
