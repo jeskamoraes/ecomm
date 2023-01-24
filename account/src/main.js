@@ -1,13 +1,23 @@
-import swaggerUi from 'swagger-ui-express';
-import swaggerDocs from './swagger.json' assert {type: "json"};
-import app from './app.js';
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocs = require('./swagger.json');
+const app = require('./app.js');
+const mongoose = require('mongoose');
 
 app.get('/docs', swaggerUi.setup(swaggerDocs));
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.listen(3000, function () {
-    console.log("Accounts server is running in port 3000");
-})
+require('./controllers/userController')(app);
+
+mongoose.connect(process.env.DATABASE_URL)
+    .then(() => {
+        console.log('Conectou ao banco!')
+        app.listen(3000, function () {
+            console.log("Accounts server is running iwn port 3000");
+        })
+    })
+    .catch((err) => console.log(err));
+
+
 
 
 
