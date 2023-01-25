@@ -1,45 +1,37 @@
-const database = require('../models');
+import { Router } from 'express';
+import { createProduct } from '../usecase/createProductUseCase.js';
+import { listProducts } from'../usecase/listProductsUseCase.js';
+import jwt from 'jsonwebtoken';
+import { createUser } from '../usecase/createUserUseCase.js';
+import { Users } from '../models/users.js';
+import validationToken from '../middlewares/auth.js';
+import bcrypt from 'bcryptjs';
 
-class ProductController {
 
-    static async createImage(req, res) {
-        const { productId } = req.params;
-        const newImage = { ...req.body, product_id: Number(productId) }
-        try {
-            const newImageCreated = await database.Images.create(newImage);
-            return res.status(200).json(newImageCreated);
-        }catch (error) {
-            return res.status(500).json(error.message)
-        }
-    }
-
-    static async listAllImages(req, res) {
-        try {
-            const allImages = await database.Images.findAll();
-            return res.status(200).json(allImages) 
-        }catch (error) {
-            return res.status(500).json(error.message);
-        }
-    }
-
-    static async createProduct(req, res) {
-        const newProduct = req.body;
-        try {
-            const newProductCreated = await database.Products.create(newProduct);
-            return res.status(200).json(newProductCreated);
-        }catch (error) {
-            return res.status(500).json(error.message)
-        }
-    }
-
-    static async listAllProducts(req, res) {
-        try {
-            const allProducts = await database.Products.findAll();
-            return res.status(200).json(allProducts) 
-        }catch (error) {
-            return res.status(500).json(error.message);
-        }
-    }
+export class ProductController {
+    // router.use(validationToken);
+    async listAllProducts(req, res)  {
+        listProducts()
+            .then(products => {
+                res.status(200).json(products)
+            })
+            .catch(error => {
+                res.status(500).json({ status: 'error', message: error.message });
+            });
+    };
+    
+    async registerProduct(req, res) {
+        const product = req.body;
+        
+        createProduct(product)
+            .then((data) => {
+                res.status(201).json(data);
+            })
+            .catch((error) => {
+                res.status(400).json({ message: error.message });
+            })
+    };
+    
 }
 
-module.exports = ProductController
+
