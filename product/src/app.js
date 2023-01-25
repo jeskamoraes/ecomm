@@ -2,15 +2,14 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { UserController } from './controllers/userController.js';
 import { ProductController } from './controllers/productController.js';
-import validationToken from './middlewares/auth.js';
+import tokenValidation from './middlewares/auth.js';
+import { productRouter } from './routes/productRoutes.js';
+import { userRouter } from './routes/userRoutes.js';
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(productRouter)
+app.use(userRouter)
 
-const userController = new UserController();
-app.post('/register', userController.registerAccount);
-app.post('/token', userController.generateToken);
-const productController = new ProductController();
-app.post('/products/register', validationToken, productController.registerProduct);
 export {app};
