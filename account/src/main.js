@@ -3,7 +3,6 @@ const swaggerDocs = require('./swagger.json');
 const app = require('./app.js');
 const mongoose = require('mongoose');
 
-app.get('/docs', swaggerUi.setup(swaggerDocs));
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 require('./controllers/userController')(app);
