@@ -1,6 +1,6 @@
 import request from 'supertest';
-import {app} from  '../../src/app.js';
-import { productExample } from '../usecase/data/products.js';
+import { app } from  '../../app.js';
+import { productExample } from '../data/products.js';
 
 describe('Product Creation', () => {
 
@@ -24,8 +24,8 @@ describe('Product Creation', () => {
                         createdAt: expect.any(String),
                         updatedAt: expect.any(String),
                     })),
-                    images: productExample.images.map(image => ({
-                        ...image, 
+                    images: productExample.images.map(images => ({
+                        ...images, 
                         id: expect.any(Number),
                         product_id: body.id,
                         createdAt: expect.any(String),

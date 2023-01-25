@@ -5,6 +5,7 @@ services:
       - mysqldb
     image: jessicamoraes/app-product
     build: product
+    entrypoint: 'npm run start:dev'
     volumes:
     - ./product:/app
     ports:
@@ -14,7 +15,7 @@ services:
     image: mysql
     container_name: mysqldb
     environment:
-      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_ROOT_PASSWORD=Ry6DyVsZoxlz81FWXJZUPEgySJHtELOg
       - MYSQL_DATABASE=products
       - MYSQL_USER=jessica
       - MYSQL_PASSWORD=123456789
@@ -26,6 +27,7 @@ services:
       - mongodb
     image: jessicamoraes/app-account
     build: account
+    entrypoint: 'npm run start:dev'
     volumes:
     - ./account:/app
     ports:

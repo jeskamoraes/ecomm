@@ -7,15 +7,14 @@ const router = Router();
 router.get('/products', (req, res) => {
     listProducts()
         .then(products => {
-            res.status(201).json(products)
+            res.status(200).json(products)
         })
         .catch(error => {
             res.status(500).json({ status: 'error', message: error.message });
         });
 });
 
-router.post('/products', function (req, res) {
-
+router.post('/products', (req, res) => {
     const product = req.body
     createProduct(product)
         .then((data) => {
@@ -26,4 +25,4 @@ router.post('/products', function (req, res) {
         })
 });
 
-export { router }
+export { router };

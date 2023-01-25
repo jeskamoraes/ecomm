@@ -18,7 +18,8 @@ export async function findProducts() {
         {
             model: Features,
             as: 'features'
-        }, {
+        }, 
+        {
             model: Images,
             as: 'images'
         }]

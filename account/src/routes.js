@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { createAccountUseCase } from "./use-case/createAccountUseCase.js";
 
-
 const router = Router();
 
 router.post('/accounts', function (req, res) {
