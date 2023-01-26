@@ -1,16 +1,8 @@
-import { Router } from 'express';
 import { createProduct } from '../usecase/createProductUseCase.js';
 import { listProducts } from'../usecase/listProductsUseCase.js';
-import jwt from 'jsonwebtoken';
-import { createUser } from '../usecase/createUserUseCase.js';
-import { Users } from '../models/users.js';
-import validationToken from '../middlewares/auth.js';
-import bcrypt from 'bcryptjs';
-
 
 export class ProductController {
-    // router.use(validationToken);
-    async listAllProducts(req, res)  {
+    listAllProducts(req, res)  {
         listProducts()
             .then(products => {
                 res.status(200).json(products)
@@ -20,7 +12,7 @@ export class ProductController {
             });
     };
     
-    async registerProduct(req, res) {
+    registerProduct(req, res) {
         const product = req.body;
         
         createProduct(product)
