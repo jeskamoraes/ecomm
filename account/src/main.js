@@ -3,9 +3,11 @@ const swaggerDocs = require('./swagger.json');
 const app = require('./app.js');
 const mongoose = require('mongoose');
 
+const userRoutes = require('./controllers/userController');
+
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-require('./controllers/userController')(app);
+userRoutes(app);
 
 mongoose.connect(process.env.DATABASE_URL)
     .then(() => {

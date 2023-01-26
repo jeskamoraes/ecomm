@@ -7,7 +7,6 @@ describe('Account Creation', () => {
     await client.connect();
     const usersCollection = await getUsersCollection(client);
     await usersCollection.deleteMany({});
-    setTimeout(() => {client.close()}, 1500)
   });
 
   it('should create an user given correct user data', async () => {

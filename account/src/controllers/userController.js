@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.post('/register', async (req, res) => {
     const { email } = req.body;
-
+    const verifyEmail = await User.findOne({ email });
     try {
-        if(await User.findOne({ email }))
+        if(verifyEmail)
         return res.status(400).send({ error: 'User already exists' });
 
         const user = await User.create(req.body);
@@ -25,11 +25,12 @@ router.post('/register', async (req, res) => {
 router.post('/token', async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email }).select('+password');
+    const validatePassword = await bcrypt.compare(password, user.password);
 
     if(!user)
         return res.status(400).send({ error: 'User or password invalids.' });
 
-    if(!await bcrypt.compare(password, user.password))
+    if(!validatePassword)
     return res.status(400).send({ error: 'User or password invalids.' });
 
     user.password = undefined;
