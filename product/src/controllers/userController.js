@@ -34,6 +34,7 @@ export class UserController {
                 email: req.body.email
             }
         });
+
         const validatePassword = await bcrypt.compare(req.body.password, user.password);
 
         if (!user)
