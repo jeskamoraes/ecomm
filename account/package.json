@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "createUserAccount",
-  "type": "module",
   "scripts": {
     "start:dev": "env-cmd nodemon src/main.js",
     "test": "env-cmd -f .env.test node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles",
@@ -13,7 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "mongodb": "^4.13.0",
     "mongoose": "^6.2.6",
     "swagger-ui-express": "^4.6.0"
