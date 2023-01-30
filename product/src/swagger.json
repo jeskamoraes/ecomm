@@ -11,6 +11,11 @@
     "paths": {
         "/products": {
             "post": {
+                "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
                 "summary": "Product registration",
                 "description": "Route responsible for registering a new product.",
                 "tags": [
@@ -20,7 +25,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Product"
+                                "$ref": "#/components/schemas/ProductRequest"
                             }
                         }
                     }
@@ -28,6 +33,12 @@
                 "responses": {
                     "500": {
                         "description": "Internal Server Error"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
                     },
                     "400": {
                         "description": "Bad Request"
@@ -38,34 +49,7 @@
                             "application/json": {
                                 "schema": {
                                     "type": "object",
-                                    "$ref": "#/components/schemas/Product"
-                                },
-                                "examples": {
-                                    "products": {
-                                        "value": {
-                                            "id": "6d607f6a-3625-45df-884a-d2a479680393",
-                                            "createdDate": "2022-12-26",
-                                            "produto": {
-                                                "nome": "Tênis adidas",
-                                                "valor": 500,
-                                                "quantidade": 10,
-                                                "descricao": "Tênis adidas branco",
-                                                "categoria": "Calçado",
-                                                "caracteristicas": [
-                                                    {
-                                                        "nome": "Tênis",
-                                                        "descricao": "Descrição"
-                                                    }
-                                                ],
-                                                "imagens": [
-                                                    {
-                                                        "url": "imagem",
-                                                        "descricao": "Descrição"
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#/components/schemas/ProductResponse"
                                 }
                             }
                         }
@@ -86,17 +70,95 @@
                         "description": "Not found"
                     },
                     "200": {
-                        "description": "OK"
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/ProductResponse"
+                                }
+                            }
+                        }
                     }
                 }
             }
+        },
+        "/users": {
+            "summary": "User registration",
+                "description": "Route responsible for registering a new user.",
+                "tags": [
+                    "Products"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "Internal Server Error"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    }
+                }
         }
     },
     "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT"
+            }   
+        },
         "schemas": {
-            "Product": {
+            "UserRequest": {
                 "type": "object",
                 "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UserResponse": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ProductResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
                     "name": {
                         "type": "string"
                     },
@@ -112,26 +174,110 @@
                     "category": {
                         "type": "string"
                     },
-                    "features": [
-                        {
-                            "name": {
-                                "type": "string"
-                            },
-                            "description": {
-                                "type": "string"
-                            }
-                        }
-                    ],
-                    "images": [
-                        {
-                            "url": {
-                                "type": "string"
-                            },
-                            "description": {
-                                "type": "string"
-                            }
-                        }
-                    ]
+                    "features": {
+                        "type": "array",
+                        "$ref": "#/components/schemas/FeatureResponse"
+                    },
+                    "images": {
+                        "type": "array",
+                        "$ref": "#/components/schemas/ImageResponse"
+                    },
+                    "createdDate": {
+                        "type": "string"
+                    },
+                    "updatedDate": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ImageResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "url": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "createdDate": {
+                        "type": "string"
+                    },
+                    "updatedDate": {
+                        "type": "string"
+                    }
+                }
+            },
+            "FeatureResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "createdDate": {
+                        "type": "string"
+                    },
+                    "updatedDate": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ProductRequest": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                            "type": "string"
+                    },
+                    "value": {
+                            "type": "number"
+                    },
+                    "quantity": {
+                            "type": "number"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "features": {
+                        "type": "array",
+                        "$ref": "#/components/schemas/FeatureRequest"
+                    },
+                    "images": {
+                        "type": "array",
+                        "$ref": "#/components/schemas/ImageRequest"
+                    }
+                }
+            },
+            "FeatureRequest": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ImageRequest": {
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
                 }
             }
         }

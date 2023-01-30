@@ -20,7 +20,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Register"
+                                "$ref": "#/components/schemas/AccountRequest"
                             }
                         }
                     }
@@ -38,7 +38,7 @@
                             "application/json": {
                                 "schema": {
                                     "type": "object",
-                                    "$ref": "#/components/schemas/Register"
+                                    "$ref": "#/components/schemas/AccountResponse"
                                 },
                                 "examples": {
                                     "accounts": {
@@ -76,6 +76,9 @@
                     "500": {
                         "description": "Internal Server Error"
                     },
+                    "401": {
+                        "description": "Error  with account data"
+                    },
                     "400": {
                         "description": "Bad Request"
                     },
@@ -90,7 +93,7 @@
                                 "examples": {
                                     "accounts": {
                                         "value": {
-                                            "token": "4ddb8389c89f03e6df48bd6ba80893f3"
+                                            "token": "string"
                                         }
                                     }
                                 }
@@ -104,7 +107,7 @@
     },
     "components": {
         "schemas": {
-            "Register": {
+            "AccountRequest": {
                 "type": "object",
                 "properties": {
                     "name": {
@@ -117,7 +120,28 @@
                         "type": "string"
                     }
                 }
-            },"Token": {
+            },
+            "AccountResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Token": {
                 "type": "object",
                 "properties": {
                     "email": {
