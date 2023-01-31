@@ -37,7 +37,6 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
                                     "$ref": "#/components/schemas/AccountResponse"
                                 },
                                 "examples": {
@@ -87,7 +86,6 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
                                     "$ref": "#/components/schemas/Token"
                                 },
                                 "examples": {
@@ -103,7 +101,6 @@
                 }
             }
         }
-
     },
     "components": {
         "schemas": {

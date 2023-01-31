@@ -13,9 +13,9 @@
             "post": {
                 "security": [
                     {
-                      "bearerAuth": []
+                        "bearerAuth": []
                     }
-                  ],
+                ],
                 "summary": "Product registration",
                 "description": "Route responsible for registering a new product.",
                 "tags": [
@@ -48,7 +48,6 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
                                     "$ref": "#/components/schemas/ProductResponse"
                                 }
                             }
@@ -74,7 +73,6 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
                                     "$ref": "#/components/schemas/ProductResponse"
                                 }
                             }
@@ -84,10 +82,11 @@
             }
         },
         "/users": {
-            "summary": "User registration",
+            "post": {
+                "summary": "User registration",
                 "description": "Route responsible for registering a new user.",
                 "tags": [
-                    "Products"
+                    "Users"
                 ],
                 "requestBody": {
                     "content": {
@@ -110,22 +109,68 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
                                     "$ref": "#/components/schemas/UserResponse"
                                 }
                             }
                         }
                     }
                 }
+            }
+        },
+        "/token": {
+            "post": {
+                "summary": "Authentication user",
+                "description": "Route responsible for registering a new user.",
+                "tags": [
+                    "Users"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Token"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "Internal Server Error"
+                    },
+                    "401": {
+                        "description": "Error  with account data"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "201": {
+                        "description": "Token account created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Token"
+                                },
+                                "examples": {
+                                    "accounts": {
+                                        "value": {
+                                            "token": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
         "securitySchemes": {
             "bearerAuth": {
-            "type": "http",
-            "scheme": "bearer",
-            "bearerFormat": "JWT"
-            }   
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
         },
         "schemas": {
             "UserRequest": {
@@ -175,11 +220,9 @@
                         "type": "string"
                     },
                     "features": {
-                        "type": "array",
                         "$ref": "#/components/schemas/FeatureResponse"
                     },
                     "images": {
-                        "type": "array",
                         "$ref": "#/components/schemas/ImageResponse"
                     },
                     "createdDate": {
@@ -234,13 +277,13 @@
                 "type": "object",
                 "properties": {
                     "name": {
-                            "type": "string"
+                        "type": "string"
                     },
                     "value": {
-                            "type": "number"
+                        "type": "number"
                     },
                     "quantity": {
-                            "type": "number"
+                        "type": "number"
                     },
                     "description": {
                         "type": "string"
@@ -249,11 +292,9 @@
                         "type": "string"
                     },
                     "features": {
-                        "type": "array",
                         "$ref": "#/components/schemas/FeatureRequest"
                     },
                     "images": {
-                        "type": "array",
                         "$ref": "#/components/schemas/ImageRequest"
                     }
                 }
@@ -276,6 +317,17 @@
                         "type": "string"
                     },
                     "description": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Token": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
                         "type": "string"
                     }
                 }
