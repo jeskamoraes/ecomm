@@ -12,10 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "celebrate": "^15.0.1",
     "env-cmd": "^10.1.0",
     "express": "^4.18.2",
     "express-validation": "^4.1.0",
     "joi": "^17.7.0",
+    "joi-translation-pt-br": "^0.0.6",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^4.13.0",
     "mongoose": "^6.2.6",
