@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import {productRouter} from './routes/productRoutes.js'
 import {userRouter} from './routes/userRoutes.js';
+import { errors } from 'celebrate';
 
 const app = express();
 
@@ -11,5 +12,6 @@ app.use(
     productRouter,
     userRouter
     );
+app.use(errors());
 
 export {app};
