@@ -6,7 +6,8 @@ describe('Account Creation', () => {
   afterEach(async () => {
     await client.connect();
     const usersCollection = await getUsersCollection(client);
-    await usersCollection.deleteMany({});
+    await usersCollection.deleteMany({}); 
+    client.close();
   });
 
   it('should create an user given correct user data', async () => {
