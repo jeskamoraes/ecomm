@@ -12,34 +12,35 @@ module.exports = class UserController {
             if (findUserByEmail)
                 return res.status(400).send({ error: 'User already exists' });
 
-            const user = await User.create(req.body);
+            const userCreated = await User.create(req.body);
 
-            delete user.password;
+            delete userCreated.password;
 
-            return res.send({ user })
+            return res.status(201).send({ userCreated });
         } catch (err) {
-            return res.status(400).send({ error: 'Registration failed.' })
+            return res.status(400).send({ error: 'Registration failed.' });
         }
     }
 
     async generateToken(req, res) {
         const { email, password } = req.body;
-        const user = await User.findOne({ email }).select('+password');
-        const validatePassword = await bcrypt.compare(password, user.password);
+        const userFound = await User.findOne({ email }).select('+password');
 
-        if (!user)
+        if (!userFound)
             return res.status(400).send({ error: 'User or password invalids.' });
+
+        const validatePassword = await bcrypt.compare(password, userFound.password);
 
         if (!validatePassword)
             return res.status(400).send({ error: 'User or password invalids.' });
 
-        delete user.password;
+        delete userFound.password;
 
-        const token = jwt.sign({ id: user.id }, process.env.SECRET, {
+        const token = jwt.sign({ id: userFound.id }, process.env.SECRET, {
             expiresIn: process.env.EXPIRESIN,
         });
 
-        res.send({ token });
+        res.status(201).send({ token });
     }
 }
 
