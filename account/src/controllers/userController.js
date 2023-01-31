@@ -1,45 +1,45 @@
-const express = require('express');
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const router = express.Router();
+module.exports = class UserController {
 
-router.post('/register', async (req, res) => {
-    const { email } = req.body;
-    const findUserByEmail = await User.findOne({ email });
-    try {
-        if(findUserByEmail)
-        return res.status(400).send({ error: 'User already exists' });
+    async registerAccount(req, res) {
+        const { email } = req.body;
 
-        const user = await User.create(req.body);
+        try {
+            const findUserByEmail = await User.findOne({ email });
+            if (findUserByEmail)
+                return res.status(400).send({ error: 'User already exists' });
 
-        user.password = undefined;
+            const user = await User.create(req.body);
 
-        return res.send({ user })
-    } catch (err) {
-        return res.status(400).send({ error: 'Registration failed.' })
+            delete user.password;
+
+            return res.send({ user })
+        } catch (err) {
+            return res.status(400).send({ error: 'Registration failed.' })
+        }
     }
-});
 
-router.post('/token', async (req, res) => {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email }).select('+password');
-    const validatePassword = await bcrypt.compare(password, user.password);
+    async generateToken(req, res) {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email }).select('+password');
+        const validatePassword = await bcrypt.compare(password, user.password);
 
-    if(!user)
-        return res.status(400).send({ error: 'User or password invalids.' });
+        if (!user)
+            return res.status(400).send({ error: 'User or password invalids.' });
 
-    if(!validatePassword)
-    return res.status(400).send({ error: 'User or password invalids.' });
+        if (!validatePassword)
+            return res.status(400).send({ error: 'User or password invalids.' });
 
-    user.password = undefined;
+        delete user.password;
 
-    const token = jwt.sign({ id: user.id }, process.env.SECRET, {
-        expiresIn: process.env.EXPIRESIN,
-    });
+        const token = jwt.sign({ id: user.id }, process.env.SECRET, {
+            expiresIn: process.env.EXPIRESIN,
+        });
 
-    res.send({ token });
-})
+        res.send({ token });
+    }
+}
 
-module.exports = app => app.use('/accounts', router);
