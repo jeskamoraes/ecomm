@@ -2,8 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-module.exports = class UserController {
-
+module.exports = class UserController {    
     async registerAccount(req, res) {
         const { email } = req.body;
 
