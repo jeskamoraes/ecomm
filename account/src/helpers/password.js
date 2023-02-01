@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 
 async function hashPassword(password) {
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, process.env.SALT);
     return hashedPassword;
 }
 

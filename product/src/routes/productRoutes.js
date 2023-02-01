@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {ProductController} from '../controllers/ProductController.js';
+import { ProductController } from '../controllers/ProductController.js';
 import tokenValidation from '../middlewares/auth.js';
 
 const productRouter = Router();

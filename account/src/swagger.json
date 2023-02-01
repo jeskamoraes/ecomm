@@ -9,7 +9,7 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/accounts": {
+        "/register": {
             "post": {
                 "summary": "User registration",
                 "description": "Route responsible for registering a new user.",
@@ -20,7 +20,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Account"
+                                "$ref": "#/components/schemas/AccountRequest"
                             }
                         }
                     }
@@ -37,17 +37,61 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "$ref": "#/components/schemas/Account"
+                                    "$ref": "#/components/schemas/AccountResponse"
                                 },
                                 "examples": {
                                     "accounts": {
                                         "value": {
-                                            "id": "6d607f6a-3625-45df-884a-d2a479680393",
-                                            "nome": "Maria Garcia",
+                                            "_id": "6d607f6a-3625-45df-884a-d2a479680393",
+                                            "name": "Maria Garcia",
                                             "email": "mariagarcia@email.com",
-                                            "password": "xxxxxxxx",
-                                            "createdDate": "2022-12-26"
+                                            "createdAt": "2023-01-30T17:26:31.443Z"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/token": {
+            "post": {
+                "summary": "Authentication user",
+                "description": "Route responsible for registering a new user.",
+                "tags": [
+                    "Accounts"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Token"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "Internal Server Error"
+                    },
+                    "401": {
+                        "description": "Error  with account data"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "201": {
+                        "description": "Token account created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Token"
+                                },
+                                "examples": {
+                                    "accounts": {
+                                        "value": {
+                                            "token": "string"
                                         }
                                     }
                                 }
@@ -60,12 +104,43 @@
     },
     "components": {
         "schemas": {
-            "Account": {
+            "AccountRequest": {
                 "type": "object",
                 "properties": {
                     "name": {
                         "type": "string"
                     },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AccountResponse": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Token": {
+                "type": "object",
+                "properties": {
                     "email": {
                         "type": "string"
                     },
